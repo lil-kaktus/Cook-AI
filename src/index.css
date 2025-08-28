@@ -1,0 +1,449 @@
+:root {
+  --cook-ai-orange: #f59d19;
+  --cook-ai-light-orange: #f9aa35;
+  --cook-ai-brown: #75421b;
+  --cook-ai-background: #ffffff;
+  --cook-ai-grey: #242424;
+  --cook-ai-light-grey: #e9e9e9;
+  --cook-ai-loading-bg: rgba(46, 46, 46, 0.2);
+  --cook-ai-gradient-percent: 6%;
+  --cook-ai-gradient-px: 50px;
+}
+
+body{
+  margin: 0;
+}
+
+.cook-ai {
+  width: 100%;
+  height: 100dvh;
+  font-family: "Lexend", verdana;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  scrollbar-width: none;
+}
+
+.cook-ai-header {
+  width: 100%;
+  background-image: linear-gradient(to right, var(--cook-ai-background), var(--cook-ai-background) var(--cook-ai-gradient-percent), var(--cook-ai-brown) var(--cook-ai-gradient-percent), var(--cook-ai-brown) calc(var(--cook-ai-gradient-percent) + var(--cook-ai-gradient-px)), var(--cook-ai-orange) calc(var(--cook-ai-gradient-percent) + var(--cook-ai-gradient-px)), var(--cook-ai-orange) calc(var(--cook-ai-gradient-percent) + var(--cook-ai-gradient-px) * 2), var(--cook-ai-background) calc(var(--cook-ai-gradient-percent) + var(--cook-ai-gradient-px) * 2), var(--cook-ai-background));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+}
+
+.cook-ai-header-image-container {
+  width: 30%;
+  min-width: 400px;
+  border-radius: 50em;
+  height: 140px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cook-ai-header img {
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.cook-ai-header img:hover {
+  width: 103%;
+}
+
+.cook-ai-main {
+  position: relative;
+  flex-grow: 2;
+  width: 100%;
+  background-color: var(--cook-ai-background);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cook-ai-main *,
+.cook-ai-header *{
+  transition: all 0.4s ease;
+}
+
+.cook-ai-main-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cook-ai-main-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cook-ai-cookie-background {
+  position: absolute;
+  opacity: 0.1;
+  animation: spinning 30s linear infinite;
+}
+
+.cook-ai-large-cookie {
+  scale: 110%;
+  right: -60px;
+  top: 0px;
+}
+
+.cook-ai-medium-cookie {
+  scale: 90%;
+  left: -20px;
+  bottom: -40px;
+}
+
+.cook-ai-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  height: 50px;
+  width: 90%;
+  position: relative;
+  margin: 35px 0px 15px;
+}
+
+.cook-ai-form-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 2;
+  min-width: 200px;
+  max-width: 400px;
+  margin: 0px 15px;
+}
+
+.cook-ai-form-input-container>input {
+  border: none;
+  font-size: 1.3rem;
+  background: linear-gradient(var(--cook-ai-background), var(--cook-ai-background)) padding-box,
+    linear-gradient(to right, var(--cook-ai-brown), var(--cook-ai-orange)) border-box;
+  border-radius: 25px;
+  border: 5px solid transparent;
+  padding: 10px 15px;
+  width: 100%;
+  color: var(--cook-ai-brown);
+  font-weight: normal;
+}
+
+.cook-ai-form-input-container span {
+  position: absolute;
+  bottom: 0;
+}
+
+.cook-ai-form button {
+  background-color: var(--cook-ai-orange);
+  border: 10px solid var(--cook-ai-orange);
+  font-size: 1.3rem;
+  padding: 10px 15px;
+  border-radius: 50em;
+  border: none;
+  color: var(--cook-ai-background);
+  font-weight: bold;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.cook-ai-form button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.cook-ai-form button::before {
+  content: "+";
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.cook-ai-duplicate-warning {
+  transform: translateY(120%);
+}
+
+.cook-ai-ingredients-list {
+  padding: none;
+  margin: 20px 0px;
+}
+
+.cook-ai-ingredients-list li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 6px;
+  margin: 5px 0px;
+}
+
+.cook-ai-ingredients-list li img {
+  height: 2rem;
+}
+
+.cook-ai-ingredients-list li span {
+  color: inherit;
+  font-weight: bold;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cook-ai-ingredients-list li button {
+  margin-left: 5px;
+  border: none;
+  background-color: var(--cook-ai-orange);
+  border-radius: 35px;
+  height: 1.8rem;
+  width: 1.8rem;
+  color: var(--cook-ai-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.cook-ai-ingredients-list li button:hover {
+  background-color: var(--cook-ai-light-orange);
+  cursor: pointer;
+}
+
+.cook-ai-generate-btns-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  gap: 6px;
+  position: relative;
+  margin-top: 15px;
+}
+
+.cook-ai-generate-btns-container button {
+  background-color: var(--cook-ai-orange);
+  color: var(--cook-ai-background);
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: 100% !important;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.cook-ai-generate-btns-container button:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.cook-ai-generate-random-btn {
+  border-color: var(--cook-ai-background);
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cook-ai-generate-random-btn>img {
+  height: 35px;
+}
+
+.cook-ai-dropdown-menu-container {
+  display: inline-block;
+  position: relative;
+}
+
+.cook-ai-dropdown-menu-btn {
+  position: relative;
+}
+
+.cook-ai-dropdown-menu-language-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  top: 100%;
+  border-radius: 0 10px 10px 10px;
+  overflow: hidden;
+}
+
+.cook-ai-dropdown-menu-language-container button {
+  width: 100%;
+  text-align: left;
+  background-color: var(--cook-ai-orange);
+  border: none;
+  font-size: 0.9rem;
+  z-index: 90;
+}
+
+.cook-ai-dropdown-menu-language-container button:hover {
+  background-color: var(--cook-ai-light-orange);
+  opacity: 1 !important;
+}
+
+.cook-ai-loading-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: var(--cook-ai-loading-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cook-ai-loading-container span {
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.cook-ai-spinner-recipe {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: none;
+  animation: spinning 1s ease infinite
+}
+
+.cook-ai-spinner-recipe img {
+  position: relative;
+  width: 140%;
+  height: 140%;
+}
+
+.cook-ai-recipe-container {
+  width: 70%;
+  text-align: left;
+  margin-bottom: 20px;
+  background-color: var(--cook-ai-background);
+  box-shadow: 4px 4px 5px var(--cook-ai-loading-bg);
+  border-radius: 25px;
+  padding: 20px;
+}
+
+.cook-ai-recipe-container h1 {
+  font-size: 2.5rem;
+  color: var(--cook-ai-orange);
+  text-shadow: -3px 0px 0px var(--cook-ai-brown);
+  text-align: center;
+}
+
+.cook-ai-recipe-container h1::before,
+.cook-ai-recipe-container h1::after {
+  content: '"';
+}
+
+.cook-ai-no-recipe-text {
+  color: var(--cook-ai-loading-bg);
+  margin: 100px 10px 0px;
+}
+
+.cook-ai-recipe-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.cook-ai-recipe-buttons-container button {
+  background-color: var(--cook-ai-orange);
+  border: none;
+  font-size: 1.5rem;
+  color: var(--cook-ai-background);
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.4s ease;
+}
+
+.cook-ai-recipe-buttons-container button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.cook-ai-recipe-buttons-container button img {
+  width: 40px;
+}
+
+@media screen and (max-width: 760px) {
+  .cook-ai-header {
+    justify-content: flex-end;
+  }
+
+  .cook-ai-main-content {
+    padding: 0px 20px;
+  }
+
+  .cook-ai-form button {
+    font-size: 0px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cook-ai-form button::before {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  .cook-ai-header-image-container {
+    scale: 0.9;
+  }
+
+  .cook-ai-cookie-background {
+    display: none;
+  }
+
+  .cook-ai-recipe-container {
+    width: 90%;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .cook-ai-medium-cookie {
+    scale: 65%;
+    left: -100px
+  }
+
+  .cook-ai-large-cookie {
+    scale: 80%;
+  }
+}
+
+@keyframes spinning {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
